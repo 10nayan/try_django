@@ -1,14 +1,16 @@
 from django.http import HttpResponse
 from articles.models import Article
+from django.template.loader import render_to_string
 import random
 
-RANDOM_ID = random.randint(1, 3)
+RANDOM_ID = random.randint(1, 2)
 
 def home_view(request):
     random_obj = Article.objects.get(id=RANDOM_ID)
-    html_string = f"""
-    <h1>Hello World</h1>
-    <p>Title: {random_obj.title}</p>
-    <p>Content: {random_obj.content}</p>
-    """
+    context = {
+        'id': random_obj.id,
+        'title': random_obj.title,
+        'content': random_obj.content
+    }
+    html_string = render_to_string("home-view.html", context=context)
     return HttpResponse(html_string)
