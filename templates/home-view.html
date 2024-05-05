@@ -5,4 +5,9 @@
     <p>Id: {{ id }}</p>
     <p>Title: {{ title }}</p>
     <p>Content: {{ content }}</p>
+    <ul>
+        {% for x in articles %}
+            <li><a href="/articles/{{x.id}}">{{x.title}}-{{x.content}}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock %}

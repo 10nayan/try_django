@@ -7,7 +7,9 @@ RANDOM_ID = random.randint(1, 2)
 
 def home_view(request):
     random_obj = Article.objects.get(id=RANDOM_ID)
+    article_queryset = Article.objects.all()
     context = {
+        'articles': article_queryset,
         'id': random_obj.id,
         'title': random_obj.title,
         'content': random_obj.content
