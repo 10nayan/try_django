@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Article
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def article_detail_view(request, id=None):
@@ -18,6 +19,7 @@ def article_search_view(request):
     context= {'object': article_obj}
     return render(request, 'articles/article-search.html', context=context)
 
+@login_required
 def article_create_view(request):
     context = {}
     if request.method == "POST":
