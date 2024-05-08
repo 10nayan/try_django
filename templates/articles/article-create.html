@@ -5,8 +5,7 @@
     {% if not created %}
         <form method="post" action="/articles/create">
             {% csrf_token %}
-            <input type="text" placeholder="Title" name="title">
-            <textarea name="content" placeholder="Content"></textarea>
+            {{ form.as_p }}
             <input type="submit">
         </form>
     {% else %}
